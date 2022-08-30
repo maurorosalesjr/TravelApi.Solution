@@ -22,21 +22,21 @@ namespace TravelApi.Controllers
 
     // GET: api/Travels
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Travel>>> Get(string species, string name, int minimumAge)
+    public async Task<ActionResult<IEnumerable<Travel>>> Get(string blerb, string location, int minimumRating)
     {
       IQueryable<Travel> query = _db.Travels.AsQueryable();
 
-      if (species != null)
+      if (blerb != null)
       {
-        query = query.Where(entry => entry.Species == species);
+        query = query.Where(entry => entry.Blerb == blerb);
       }
-      if (name != null)
+      if (location != null)
       {
-        query = query.Where(entry => entry.Name == name);
+        query = query.Where(entry => entry.Location == location);
       }
-      if (minimumAge > 0)
+      if (minimumRating > 0)
       {
-        query = query.Where(entry => entry.Age >= minimumAge);
+        query = query.Where(entry => entry.Rating >= minimumRating);
       }
       return await query.ToListAsync();
     }
