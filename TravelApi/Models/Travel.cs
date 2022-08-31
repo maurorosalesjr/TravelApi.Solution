@@ -9,6 +9,9 @@ namespace TravelApi.Models
         [StringLength(50)]
         public string Location { get; set; }
         [Required]
+        [StringLength(50)]
+        public string Country { get; set; }
+        [Required]
         [StringLength(1000)]
         public string Blerb { get; set; }
         [Required]

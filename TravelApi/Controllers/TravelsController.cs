@@ -22,7 +22,7 @@ namespace TravelApi.Controllers
 
     // GET: api/Travels
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Travel>>> Get(string blerb, string location, int minimumRating)
+    public async Task<ActionResult<IEnumerable<Travel>>> Get(string blerb, string location, string country, int minimumRating)
     {
       IQueryable<Travel> query = _db.Travels.AsQueryable();
 
@@ -33,6 +33,10 @@ namespace TravelApi.Controllers
       if (location != null)
       {
         query = query.Where(entry => entry.Location == location);
+      }
+      if (country != null)
+      {
+        query = query.Where(entry => entry.Country == country);
       }
       if (minimumRating > 0)
       {
